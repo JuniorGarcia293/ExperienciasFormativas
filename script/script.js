@@ -187,11 +187,10 @@ document.getElementById('htmlFile').addEventListener('change', function(event) {
       //   });
       // });
 
-      document.getElementById("guardarEvaluacion").addEventListener("click", () => {
-        const innovacion = document.getElementById("puntuacionInnovacion").value;
-        const impacto = document.getElementById("puntuacionImpacto").value;
-        const comentarios = document.getElementById("comentariosJurado").value;
-        alert(`Evaluación registrada:\nInnovación: ${innovacion}\nImpacto: ${impacto}\nComentarios: ${comentarios}`);
+      document.getElementById("guardarEvaluacion")?.addEventListener("click", () => {
+        const innovacion = document.getElementById("puntuacionInnovacion")?.value;
+        const comentarios = document.getElementById("comentariosJurado")?.value;
+      
+        alert(`Evaluación registrada:\nNota: ${innovacion}\nComentarios: ${comentarios}`);
       });
-
       
