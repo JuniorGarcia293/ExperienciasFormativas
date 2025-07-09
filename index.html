@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eventos con Modales Independientes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/estilosmodales.css" />
+  </head>
+  <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4 font-sans">
+    <button id="cerrarSesion" class="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+      Cerrar sesión
+    </button>
+    
+    <div id="user-info" class="bg-white shadow p-4 rounded mb-4 max-w-md w-full text-gray-800">
+      <h2 class="text-xl font-bold mb-2">Bienvenido</h2>
+      <p><strong>Nombre:</strong> <span id="userName">Cargando...</span></p>
+      <p><strong>Correo:</strong> <span id="userEmail">Cargando...</span></p>
+    </div>
+
+    <div class="flex gap-4 mt-10">
+      <button onclick="mostrarVista('estudiante')" class="bg-blue-500 text-white px-4 py-2 rounded">Vista Estudiante</button>
+      <button onclick="mostrarVista('jurado')" class="bg-purple-500 text-white px-4 py-2 rounded">Vista Jurado</button>
+    </div>
+
+    <h1 class="text-4xl font-bold text-gray-800 mb-8">Aplicación para Organizar Hackatones</h1>
+
+    <div class="flex flex-wrap justify-center gap-6 mb-10">
+      <button id="openModal1" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Abrir HTML</button>
+      <button id="openModal2" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">Abrir CSS</button>
+      <button id="openModal3" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">Abrir JS</button>
+    </div>
+
+    <div id="myModal1" class="modal">
+      <div class="modal-content bg-white p-8 rounded-lg shadow-xl">
+        <span class="close-button" data-modal-id="myModal1">&times;</span>
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Detalles del Servicio A</h3>
+        <textarea class="editable-content" data-modal-id="myModal1" id="contenidohtml" style="border: 1px solid #ccc; padding: 10px; min-height: 100px; width:  100%;" rows="10"></textarea>
+        <button class="save-button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-4" data-modal-id="myModal1">Guardar Cambios</button>
+      </div>
+    </div>
+
+    <div id="myModal2" class="modal">
+      <div class="modal-content bg-white p-8 rounded-lg shadow-xl">
+        <span class="close-button" data-modal-id="myModal2">&times;</span>
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Detalles del Servicio B</h3>
+        <textarea class="editable-content" data-modal-id="myModal2" id="contenidocss" style="border: 1px solid #ccc; padding: 10px; min-height: 100px; width:  100%;" rows="10"></textarea>
+        <button class="save-button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-4" data-modal-id="myModal2">Guardar Cambios</button>
+      </div>
+    </div>
+
+    <div id="myModal3" class="modal">
+      <div class="modal-content bg-white p-8 rounded-lg shadow-xl">
+        <span class="close-button" data-modal-id="myModal3">&times;</span>
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Detalles del Servicio C</h3>
+        <textarea class="editable-content" data-modal-id="myModal3" id="contenidojs" style="border: 1px solid #ccc; padding: 10px; min-height: 100px; width:  100%;" rows="10"></textarea>
+        <button class="save-button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-4" data-modal-id="myModal3">Guardar Cambios</button>
+      </div>
+    </div>
+
+    <input type="file" id="htmlFile" name="htmlFile" accept=".html,text/html" />
+    <input type="file" id="cssFile" name="avatar" accept=".css,text/css" />
+    <input type="file" id="jsFile" name="avatar" accept=".js,application/javascript"/>
+
+
+    <!-- Vista Estudiante -->
+    <div id="vistaEstudiante" class="mt-10">
+      <div id="adminSection" class="w-full max-w-2xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Crear Hackatón</h2>
+        <input type="text" id="hackathonName" placeholder="Nombre del grupo" class="border p-2 w-full mb-2 rounded" />
+        <textarea id="hackathonDescription" placeholder="¿A que grupo desea ingresar?" class="border p-2 w-full mb-2 rounded"></textarea>
+        <button id="crearHackathon" class="bg-blue-700 text-white px-4 py-2 rounded">Crear Hackatón</button>
+      </div>
+
+    </div>
+
+    <!-- Vista Jurado -->
+    <div id="vistaJurado" class="hidden mt-10 w-full max-w-2xl">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Evaluación del Proyecto</h2>
+      <input type="number" min="0" max="20" id="puntuacionImpacto" placeholder="Nota del estudiante" class="border p-2 w-full mb-2 rounded" />
+      <textarea id="comentariosJurado" placeholder="Comentarios del jurado" class="border p-2 w-full mb-2 rounded"></textarea>
+      <button id="guardarEvaluacion" class="bg-purple-600 text-white px-4 py-2 rounded">Guardar Evaluación</button>
+    </div>
+
+
+    <script src="script/script.js"></script>
+    <script type="module" src="script/auth.js"></script>
+
+  </body>
+</html>
